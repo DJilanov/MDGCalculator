@@ -1,7 +1,9 @@
 'use strict';
 // here we set all of the modules we are going to integrate
 var _mainModules = [
-    ,'mainView'
+    'ngRoute'
+    ,'ngResource'
+    ,'Home'
 ];
 
 angular.module('app', _mainModules )

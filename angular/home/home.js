@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Home')
+angular.module('Home', [])
     .config(function () {})
     .constant('homePath', '/home');
 

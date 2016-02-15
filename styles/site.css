@@ -1,7 +1,51 @@
-/* we set the header with the background on the top */
+/* we set the header with the background on the top of each page*/
 header {
 	height: 90px;
     width: 100%;
-  	background-image: url('./img/logo.png');
-  	background-color: white;
+  	background-image: url('../img/logo.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: white;
  }
+body {
+	background-color: #F2F4F5;
+}
+.calculator {
+	background-color: white;
+	margin-top: 30px;
+	padding: 0px 20px 20px 20px;
+	border-radius: 5px;
+}
+.calculator .form-label hr {
+	margin-top: 0px;
+	margin-bottom: 30px;
+}
+.calculator .form-group > div {
+	margin-right: 20px;
+}
+.calculator .form-group select {
+	opacity: 0.5;
+}
+.calculator .form-group input {
+	opacity: 0.5;
+}
+.calculator .form-group .glyphicon {
+	opacity: 0.25;
+}
+.calculator .form-group label {
+	font-weight: 600;
+}
+.calculator .form-group label span {
+	opacity: 0.25;
+}
+.calculator .form-group input[type="radio"]:checked + span {
+	opacity: 1.0;
+	font-weight: 600;
+}
+.calculator .button-container {
+	text-align: center;
+}
+/* global css */
+.inline-block {
+	display: inline-block;
+}
