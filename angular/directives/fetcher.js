@@ -2,7 +2,8 @@
 
 angular.module('Home')
 	.value("API_GLOBAL_SETTINGS", {
-		makesAndModelsUrl: "http://jilanov.eu:8080/api/home"
+		// deployed api on heroku
+		makesAndModelsUrl: "https://agile-hollows-13663.herokuapp.com/api/makesAndModels"
 	})
 	.factory('fetcherSVC', ['$http', '$q', 'API_GLOBAL_SETTINGS',
 		function($http, $q, API_GLOBAL_SETTINGS) {
@@ -11,7 +12,7 @@ angular.module('Home')
 			function getMakesAndModels() {
 				var deferred = $q.defer();
 				$http.get(url).then(function (response) {
-					deferred.resolve(response.data);
+					deferred.resolve(response.data.makesAndModels[0].carsAndModels);
 				});
 
 				return deferred.promise;

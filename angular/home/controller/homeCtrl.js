@@ -13,13 +13,8 @@ angular.module('Home')
 			// we fetch the makes and models
 			fetcherSVC.getMakesAndModels()
 				.then(function (result) {
-					$scope.fillMakes(result);
+					$scope.makes = result;
 				});
-
-			// used to fill the first select
-			$scope.fillMakes = function(result) {
-
-			};
 			// used to fill the second select based on the selected make
 			$scope.fillModels = function(result) {
 
