@@ -1,0 +1,7 @@
+/* we set the header with the background on the top */
+header {
+	height: 90px;
+    width: 100%;
+  	background-image: url('./img/logo.png');
+  	background-color: white;
+ }

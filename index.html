@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MDG Calculator</title>
+    <link href="./node_modules/bootstrap/dist/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="./styles/site.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- will be used to contain the view of the app -->
+    <div class="angularView" ng-view></div>
+	  <!-- load third-party libraries -->
+  	<script src="./node_modules/angular/angular.min.js"></script>
+  	<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  	<script src="./node_modules/bootstrap/dist/bootstrap.min.js"></script>
+  	<!-- load the angular -->
+    <script src="./angular/directives/fetcher.js"></script>
+    <script src="./angular/home/home.js"></script>
+    <script src="./angular/home/controller/homeCtrl.js"></script>
+  	<script src="./angular/app.js"></script>
+  	<!-- load custom javascript -->
+  	<script src="./scripts/site.js"></script>
+</body>
+</html>

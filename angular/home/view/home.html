@@ -1,0 +1,51 @@
+<div class="home">
+	<div ng-include="'./angular/header/view/header.html'" class="header"> </div>
+	<footer>
+		<div class="container dealsContainer">
+			<div class="product col-xs-12 col-sm-4 col-md-3" ng-repeat="model in products | filter: {'type': 'product'}" ng-click="onProductClick(model)">
+				<div class="product-image-container">
+					<!-- create title, image, description -->
+					<!-- image -->
+					<div class="image-container">
+						<img ng-if="model.image" ng-src="{{'./img/' + config.smallImage + model._id + '.png' + '?' + time}}" alt="{{model.imageDescription}}">
+						<img ng-if="model.image == false" ng-src="{{'./img/blank.png' + '?' + time}}" alt="{{model.imageDescription}}">
+					</div>
+					<!-- title -->
+					<h1>{{model.title}}</h1>
+					<!-- attention -->
+					<h2 class='blue'>
+						<span>{{model.description}}</span>
+					</h2>
+					<div class='productPrice'>
+						<span class='newPrice'>{{model.newPrice}}</span>
+						<span class='oldPrice' ng-show="model.oldPrice">{{model.oldPrice}}</span>
+						<span>{{vault}}</span>
+					</div>
+					<a class="new-box box" ng-show="model.isNew !== 'false'">
+						<span>{{text.productNew}}</span>
+					</a>
+					<a class="offer-box box" ng-show="model.dailyOffer !== 'false'">
+						<span>{{text.productOffer}}</span>
+					</a>
+					<a class="over-box box" ng-show="model.count == '0'">
+						<span>{{text.productOver}}</span>
+					</a>
+					<!-- showed on hover -->
+					<a class="quick-view-button">
+						<span>{{text.productView}}</span>
+					</a>
+					<div class="content_price" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+						<span class='newPrice'>{{model.newPrice}}</span>
+						<span class='oldPrice' ng-show="model.oldPrice">{{model.oldPrice}}</span>
+						<span>{{vault}}</span>
+					</div>
+					<div class="button-container">
+						<div class="btn btn-primary add_to_cart_button" title="Добавяне към количката"  ng-click="addToCart(model); $event.stopPropagation();">
+							<span>Добавяне към количката</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
