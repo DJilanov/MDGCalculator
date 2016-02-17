@@ -1,25 +1,25 @@
-'use strict';
+"use strict";
 // here we set all of the modules we are going to integrate
 var _mainModules = [
-    'ngRoute'
-    ,'ngResource'
-    ,'Home'
+    "ngRoute"
+    ,"ngResource"
+    ,"Home"
 ];
 
-angular.module('app', _mainModules )
-    .config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider){
+angular.module("app", _mainModules )
+    .config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider){
         $routeProvider
             .otherwise({
-                redirectTo: '/home'
+                redirectTo: "/home"
             });
 
         var routes = [];
 
         routes.push({
-            name: '/home',
+            name: "/home",
             params: {
-                templateUrl:  './angular/home/view/home.html',
-                controller: 'HomeCtrl'
+                templateUrl:  "./angular/home/view/home.html",
+                controller: "HomeCtrl"
             }
         });
 
@@ -28,16 +28,16 @@ angular.module('app', _mainModules )
         });
 
         var $http,
-            interceptor = ['$q', '$injector', function ($q, $injector) {
+            interceptor = ["$q", "$injector", function ($q, $injector) {
                 var notificationChannel;
 
                 function success(response) {
                     // get $http via $injector because of circular dependency problem
-                    $http = $http || $injector.get('$http');
-                    // don't send notification until all requests are complete
+                    $http = $http || $injector.get("$http");
+                    // don"t send notification until all requests are complete
                     if ($http.pendingRequests.length < 1) {
                         // get requestNotificationChannel via $injector because of circular dependency problem
-                        notificationChannel = notificationChannel || $injector.get('requestNotificationChannelSvc');
+                        notificationChannel = notificationChannel || $injector.get("requestNotificationChannelSvc");
                         // send a notification requests are complete
                         notificationChannel.requestEnded();
                     }
@@ -46,11 +46,11 @@ angular.module('app', _mainModules )
 
                 function error(response) {
                     // get $http via $injector because of circular dependency problem
-                    $http = $http || $injector.get('$http');
-                    // don't send notification until all requests are complete
+                    $http = $http || $injector.get("$http");
+                    // don"t send notification until all requests are complete
                     if ($http.pendingRequests.length < 1) {
                         // get requestNotificationChannel via $injector because of circular dependency problem
-                        notificationChannel = notificationChannel || $injector.get('requestNotificationChannelSvc');
+                        notificationChannel = notificationChannel || $injector.get("requestNotificationChannelSvc");
                         // send a notification requests are complete
                         notificationChannel.requestEnded();
                     }
@@ -59,7 +59,7 @@ angular.module('app', _mainModules )
 
                 return function (promise) {
                     // get requestNotificationChannel via $injector because of circular dependency problem
-                    notificationChannel = notificationChannel || $injector.get('requestNotificationChannelSvc');
+                    notificationChannel = notificationChannel || $injector.get("requestNotificationChannelSvc");
                     // send a notification requests are complete
                     notificationChannel.requestStarted();
                     return promise.then(success, error);
@@ -69,8 +69,8 @@ angular.module('app', _mainModules )
         $httpProvider.interceptors.push(interceptor);
 
     }])
-    .constant('serverErrorMsg','Server error!')
-    .constant('sessionToken', 'session-token');
+    .constant("serverErrorMsg","Server error!")
+    .constant("sessionToken", "session-token");
 
 
 

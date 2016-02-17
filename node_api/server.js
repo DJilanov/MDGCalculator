@@ -6,7 +6,7 @@ var express    = require('express');        // call express
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 // here we declare all functions we use for the standart user interface
-var makesAndModels       = require('./makesAndModels');
+var database       = require('./database');
 // this will let us get nv.PORT || 8080;        // set our port
 
 // ROUTES FOR OUR API
@@ -35,22 +35,30 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // SET NEEDED VARIABLES
 // =============================================================================
 // we connect to the db using the credentials and fetch the home and products
-makesAndModels.connectDb();
+database.connectDb();
 
 // START THE SERVER
 // =============================================================================
 app.listen(port);
 // CORS header securiy
 app.all('/*', function (req, res, next) {
-    // res.header("Access-Control-Allow-Origin", "www.jilanov.eu");
+    // we allow everyone to make calls ( we can easy block it to single domain where it is deployed )
     res.header("Access-Control-Allow-Origin", "*");
+    // allow all methods ( OPTIONS is not implemented to return all options _
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    // allow the request for the scripts
     res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
     next();
 });
-// when we call from the home we return the database
+// when we call from the fetcher service we return the models database
 app.get('/api/makesAndModels', function (req, res){
     res.json({
-        "makesAndModels": makesAndModels.getMakesAndModelsDatabase(),
+        "makesAndModels": database.getMakesAndModelsDatabase()
+    });
+});
+// when we call from the fetcher service we return the states database
+app.get('/api/states', function (req, res){
+    res.json({
+        "states": database.getStatesDatabase()
     });
 });

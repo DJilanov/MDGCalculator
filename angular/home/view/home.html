@@ -8,30 +8,25 @@
 		<form role="form">
 			<div class="form-group col-md-6">
 				<label for="from">Ship Vehicle FROM:</label>
-				<input type="input" class="form-control" id="from" placeholder="ZIP or City">
+				<input type="input" class="form-control" id="from" placeholder="ZIP or City" ng-model="form.from">
 			</div>
+			<div class="glyphicon glyphicon-chevron-right next-glyph"></div>
 			<div class="form-group col-md-6">
 				<label for="to">Ship Vehicle TO:</label>
-				<input type="password" class="form-control" id="to" placeholder="ZIP or City">
+				<input type="input" class="form-control" id="to" placeholder="ZIP or City" ng-model="form.to">
 			</div>
 			<div class="form-group col-md-6">
 				<label for="make">Make:</label>
-				<select class="form-control" id="make">
-					<option value="default">Select Make</option>
-					<option value="two">Two</option>
-					<option value="three">Three</option>
-					<option value="four">Four</option>
-					<option value="five">Five</option>
+				<select class="form-control" id="make" ng-change="fillModels()" ng-model="form.make">
+					<option value="Select Make" selected="selected">Select Make</option>
+					<option ng-repeat="make in makes | filter:text" value="{{make.text}}">{{make.text}}</option>
 				</select>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="model">Model:</label>
-				<select class="form-control" id="model">
-					<option value="default">Select Model</option>
-					<option value="two">Two</option>
-					<option value="three">Three</option>
-					<option value="four">Four</option>
-					<option value="five">Five</option>
+				<select class="form-control" id="model" ng-model="form.model">
+					<option value="Select Model" selected="selected">Select Model</option>
+					<option ng-repeat="model in models | filter:text" value="{{model.id}}">{{model.text}}</option>
 				</select>
 			</div>
 			<div class="form-group col-md-6">
@@ -40,35 +35,35 @@
 						title="" data-original-title="Is the car opratable by a driver"></span>
 				</div>
 				<label class="radio-inline">
-					<input type="radio" name="isOperatable" value="Yes" checked="checked">
+					<input type="radio" name="isOperatable" value="Yes" checked="checked" ng-model="form.isOperatable">
 					<span>Yes</span>
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="isOperatable" value="No">
+					<input type="radio" name="isOperatable" value="No" ng-model="form.isOperatable">
 					<span>No</span>
 				</label>
 			</div>
 			<div class="form-group col-md-6">
 				<div class="inline-block">
-					<span>Transport type? </span><span class="glyphicon glyphicon-info-sign infoTooltip" data-toggle="tooltip" data-placement="top"
+					<span>Transport type </span><span class="glyphicon glyphicon-info-sign infoTooltip" data-toggle="tooltip" data-placement="top"
 						title="" data-original-title="How do you want us to transport your car"></span>
 				</div>
 				<div class="inline-block">
 					<label class="radio-inline">
-						<input type="radio" name="transportType" value="Open" checked="checked">
+						<input type="radio" name="transportType" value="Open" checked="checked" ng-model="form.transportType">
 						<span>Open</span>
 					</label>
 				</div>
 				<div class="inline-block">
 					<label class="radio-inline">
-						<input type="radio" name="transportType" value="Enclosed">
+						<input type="radio" name="transportType" value="Enclosed" ng-model="form.transportType">
 						<span>Enclosed</span>
 					</label>
 				</div>
 			</div>
 			<div class="form-group col-md-12 button-container">
 				<hr/>
-				<button type="button" class="btn btn-info">Calculate Cost</button>
+				<button type="button" class="btn btn-info" ng-click="calculate();">Calculate Cost</button>
 			</div>
 		</form>
 	</div>
